@@ -1,5 +1,5 @@
 # utility
-JavaScript 常用工具
+JavaScript 常用方法
 
 ## 包含功能
 
