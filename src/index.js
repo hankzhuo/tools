@@ -7,19 +7,21 @@ var utility = {
 
       var callNow = immediate && !wait;
       var callLater = wait && !immediate;
-      clearTimeout(timeoutId);
       if (callLater) {
+        clearTimeout(timeoutId);
         timeoutId = setTimeout(function() {
           timeoutId = null;
           func.apply(that, args);
         }, wait);
       }
-      if (callNow) { func.apply(that, args); }
+      if (callNow) {
+        func.apply(that, args);
+      }
     };
   },
   throttle: function(func, wait) {
-    var timeoutId, 
-      previous = 0, 
+    var timeoutId,
+      previous = 0,
       that = this,
       args = arguments;
 
@@ -27,7 +29,7 @@ var utility = {
       previous = +new Date();
       timeoutId = null;
       func.apply(that, args);
-    };  
+    };
 
     return function() {
       var now = +new Date();
@@ -39,8 +41,16 @@ var utility = {
         previous = now;
         func.apply(that, args);
       } else if (!timeoutId) {
-          timeoutId = setTimeout(later, remaining);
-        }
-    }
+        timeoutId = setTimeout(later, remaining);
+      }
+    };
+  },
+  unique: function(array) {
+    var obj = {};
+    return array.filter(function(item, index, array) {
+      return obj.hasOwnProperty(typeof item + JSON.stringify(item))
+        ? false
+        : (obj[typeof item + JSON.stringify(item)] = true);
+    });
   }
 };
