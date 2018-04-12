@@ -52,5 +52,23 @@ var utility = {
         ? false
         : (obj[typeof item + JSON.stringify(item)] = true);
     });
+  },
+  checkType: function(obj) {
+    var classtypes = {};
+    
+    "Boolean Number String Function Array Date RegExp Object Error Null Undefined"
+      .split(" ")
+      .map(function(item, index) {
+        classtypes["[object " + item + "]"] = item.toLowerCase();
+      });
+
+    var checkType = function(obj) {
+      if (obj == null) {
+        return obj + "";
+      }
+      return typeof obj === "object" || typeof obj === "function"
+        ? classtypes[Object.prototype.toString.call(obj)] || "object"
+        : typeof obj;
+    };
   }
 };
