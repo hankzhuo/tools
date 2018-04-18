@@ -62,13 +62,11 @@ var utility = {
         classtypes["[object " + item + "]"] = item.toLowerCase();
       });
 
-    var checkType = function(obj) {
-      if (obj == null) {
-        return obj + "";
-      }
-      return typeof obj === "object" || typeof obj === "function"
-        ? classtypes[Object.prototype.toString.call(obj)] || "object"
-        : typeof obj;
-    };
+    if (obj == null) {
+      return obj + "";
+    }
+    return typeof obj === "object" || typeof obj === "function"
+      ? classtypes[Object.prototype.toString.call(obj)] || "object"
+      : typeof obj;
   }
 };

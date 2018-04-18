@@ -17,4 +17,4 @@ var checkType = function(obj) {
 console.log(classtypes)
 console.log(checkType(null))
 console.log(checkType(undefined))
-console.log(checkType(true))
+console.log(checkType(true))                                                                                                
