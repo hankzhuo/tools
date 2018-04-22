@@ -116,5 +116,19 @@ var utility = {
       }
     }
     return url;
+  },
+  getQueryString: function(url, name) {
+    var params;
+    var result = {};
+    if (url.indexOf("?") !== -1) {
+      var index = url.indexOf("?") + 1;
+      params = url.slice(index);
+      var arr = params.split('&');
+      arr.forEach(function(item) {
+        var _item = item.split('=')
+        result[_item[0]] = _item[1]
+      })
+      return result[name];
+    }
   }
 };
