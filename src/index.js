@@ -100,7 +100,21 @@ var utility = {
     }
     document.cookie = cookieText;
   },
-  unsetCookie: function (name, path, domain, secure) {
+  unsetCookie: function(name, path, domain, secure) {
     this.set(name, "", new Date(0), path, domain, secure);
+  },
+  encodeURL: function(url, params) {
+    let paramsArr = [];
+    if (params) {
+      Object.keys(params).forEach(item => {
+        paramsArr.push(encodeURIComponent(item) + "=" + encodeURIComponent(params[item]));
+      });
+      if (url.indexOf("?") < 0) {
+        url += "?" + paramsArr.join("&");
+      } else {
+        url += url + "&" + paramsArr.join("&");
+      }
+    }
+    return url;
   }
 };

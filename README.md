@@ -1,5 +1,5 @@
 # utility
-JavaScript 常用方法
+整理 JavaScript 常用方法
 
 ## 包含功能
 
@@ -11,3 +11,4 @@ JavaScript 常用方法
   - 获取 ```utility.getCookie(name)```
   - 设置 ```utility.setCookie(name, value[, expires, path, domain, secure])```
   - 删除 ```utility.unsetCookie(name, path, domain, secure)```
+- 拼接URL ```utility.encodeURL(url, params)```

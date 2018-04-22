@@ -1,24 +1,23 @@
-// 第二版
-function sub_curry(fn) {
-  var args = [].slice.call(arguments, 1);
-  return function () {
-    return fn.apply(this, args.concat([].slice.call(arguments)));
-  };
-}
+const server = "hettp://123.123.123.123:2000";
+const testParams = {
+  name: "nameyese",
+  password: "passwords"
+};
 
-function curry(fn, length) {
-  length = length || fn.length;
-  var slice = Array.prototype.slice;
-  return function () {
-    if (arguments.length < length) {
-      var combined = [fn].concat(slice.call(arguments));
-      return curry(sub_curry.apply(this, combined), length - arguments.length);
+function toUrl(url, params) {
+  let paramsArr = [];
+  if (params) {
+    Object.keys(params).forEach(item => {
+      paramsArr.push(item + "=" + params[item]);
+    });
+    if (url.search(/\?/) === -1) {
+      url += "?" + paramsArr.join("&");
     } else {
-      return fn.apply(this, arguments);
+      url += "&" + paramsArr.join("&");
     }
-  };
+  }
+  console.log(url);
+  // hettp://123.123.123.123:2000?name=nameyese&password=passwords
 }
 
-var fn = curry(function (a, b, c) {
-  return [a, b, c];
-});
+toUrl(server, testParams)
