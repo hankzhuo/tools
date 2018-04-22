@@ -11,4 +11,6 @@
   - 获取 ```utility.getCookie(name)```
   - 设置 ```utility.setCookie(name, value[, expires, path, domain, secure])```
   - 删除 ```utility.unsetCookie(name, path, domain, secure)```
-- 拼接URL ```utility.encodeURL(url, params)```
+- URL：
+  - 拼接URL ```utility.encodeURL(url, params)```
+  - 获取queryString ```utility.getQueryString(url, name)```

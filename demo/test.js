@@ -1,23 +1,17 @@
-const server = "hettp://123.123.123.123:2000";
-const testParams = {
-  name: "nameyese",
-  password: "passwords"
-};
-
-function toUrl(url, params) {
-  let paramsArr = [];
-  if (params) {
-    Object.keys(params).forEach(item => {
-      paramsArr.push(item + "=" + params[item]);
-    });
-    if (url.search(/\?/) === -1) {
-      url += "?" + paramsArr.join("&");
-    } else {
-      url += "&" + paramsArr.join("&");
-    }
+var str = "http://www.abc.com/detail?code=1&start=2017-02-01&end=2017-02-14&name=abc";
+var getQueryString = function(url, name) {
+  var params;
+  var result = {};
+  if (url.indexOf("?") !== -1) {
+    var index = url.indexOf("?") + 1;
+    params = url.slice(index);
+    var arr = params.split('&');
+    arr.forEach(function(item) {
+      var _item = item.split('=')
+      result[_item[0]] = _item[1]
+    })
+    return result[name];
   }
-  console.log(url);
-  // hettp://123.123.123.123:2000?name=nameyese&password=passwords
 }
 
-toUrl(server, testParams)
+console.log(getQueryString(str, "name")); // 2017-02-01
